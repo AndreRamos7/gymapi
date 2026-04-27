@@ -1,4 +1,6 @@
-from flask import Flask
+import random
+
+from flask import Flask, jsonify
 from flask_cors import CORS
 from config import Config
 from routes.upload_routes import upload_bp
@@ -29,17 +31,20 @@ def hello_world():
 
 @app.route("/sellers")
 def sellers():
-    VENDEDORES = ["Michael Jackson", "Steve Jobs", 
-                  "Carla Mendes", "Bill gates", 
-                  "Elaine Castro", "Felipe Nunes"];
-   
-    VENDEDORES.map = lambda v: {
-        "vendedor": v,
-        "vendas": math.floor(math.random() * (130 - 40 + 1) + 40),
-        "ticket_medio": math.floor(math.random() * (980 - 380 + 1) + 380),
-        "pct_premium": math.floor(math.random() * (55 - 15 + 1) + 15),
-        "pct_desconto": math.floor(math.random() * (70 - 20 + 1) + 20),
-        "receita": math.floor(math.random() * (145000 - 35000 + 1) + 35000)
-    }
-    json_response = list(map(VENDEDORES.map, VENDEDORES))
-    return json_response
+    vendedores = [
+        "Michael Jackson", "Steve Jobs", 
+        "Nancy Wheeler", "Bill Gates", 
+        "Jane Hopper", "Dustin Henderson",
+    ]
+
+    return jsonify([
+        {
+            "vendedor": v,
+            "vendas": random.randint(40, 130),
+            "ticket_medio": random.randint(380, 980),
+            "pct_premium": random.randint(15, 55),
+            "pct_desconto": random.randint(20, 70),
+            "receita": random.randint(35000, 145000)
+        }
+        for v in vendedores
+    ])
