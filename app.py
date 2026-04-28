@@ -32,10 +32,11 @@ def hello_world():
 @app.route("/sellers")
 def sellers():
     vendedores = [
-        "Michael Jackson", "Steve Jobs", 
+        "Steve Harrington", "Jim Hopper", 
         "Nancy Wheeler", "Bill Gates", 
         "Jane Hopper", "Dustin Henderson",
-    ]
+        "Lucas Sinclair", "Max Mayfield",
+    ]   
 
     return jsonify([
         {
